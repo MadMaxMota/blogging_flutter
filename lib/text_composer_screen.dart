@@ -17,12 +17,13 @@ class _TextComposerScreenState extends State<TextComposerScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: Size(50, 10),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(42))),
-                  onPressed: () {},
-                  child: Text('Tweetar')),
+                style: ElevatedButton.styleFrom(
+                    minimumSize: Size(50, 10),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(42))),
+                child: Text('Tweetar'),
+                onPressed: _isComposing ? () {} : null,
+              ),
             )
           ],
         ),
@@ -42,7 +43,7 @@ class _TextComposerScreenState extends State<TextComposerScreen> {
                       padding: const EdgeInsets.all(10),
                       child: TextField(
                         decoration: InputDecoration(
-                            hintText: 'O que você está acontecendo?'),
+                            hintText: 'O que está acontecendo?'),
                         onChanged: (text) {
                           setState(() {
                             _isComposing = text.isNotEmpty;
