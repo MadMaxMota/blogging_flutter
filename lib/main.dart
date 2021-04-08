@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         bottomAppBarTheme: BottomAppBarTheme(color: Colors.blue),
         brightness: Brightness.light,
         primaryIconTheme: IconThemeData(color: Colors.blue),
-        iconTheme: IconThemeData(color: Colors.blue),
+        iconTheme: IconThemeData(color: Colors.blue, size: 15),
       ),
       home: FeedScreen(),
     );
