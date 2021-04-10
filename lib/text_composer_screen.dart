@@ -14,6 +14,7 @@ class TextComposerScreen extends StatefulWidget {
 class _TextComposerScreenState extends State<TextComposerScreen> {
   final TextEditingController _controller = TextEditingController();
   final ImagePicker picker = ImagePicker();
+  Map<String, dynamic> data = {};
   bool _isComposing = false;
   File imgFile;
 
@@ -37,6 +38,11 @@ class _TextComposerScreenState extends State<TextComposerScreen> {
         print("No image selected.");
       }
     });
+    if (pickedFile == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   @override
@@ -97,16 +103,24 @@ class _TextComposerScreenState extends State<TextComposerScreen> {
                         IconButton(
                             icon: Icon(Icons.photo_camera),
                             onPressed: () async {
-                              getImage(false);
-                              if (imgFile == null) return;
-                              widget.postInFeed(imgFile: imgFile);
+                              getImage(true).then((value) => {
+                                    if (imgFile != null)
+                                      {
+                                        widget.postInFeed(imgFile: imgFile),
+                                        Navigator.pop(context)
+                                      }
+                                  });
                             }),
                         IconButton(
                             icon: Icon(Icons.photo),
                             onPressed: () async {
-                              getImage(false);
-                              if (imgFile == null) return;
-                              widget.postInFeed(imgFile: imgFile);
+                              getImage(false).then((value) => {
+                                    if (imgFile != null)
+                                      {
+                                        widget.postInFeed(imgFile: imgFile),
+                                        Navigator.pop(context),
+                                      }
+                                  });
                             }),
                       ],
                     ),

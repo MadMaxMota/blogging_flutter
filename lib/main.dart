@@ -1,14 +1,8 @@
-import 'package:blogging_flutter/feed_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:blogging_flutter/login_screnn.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   runApp(MyApp());
-  QuerySnapshot snapshot =
-      await Firestore.instance.collection("col").getDocuments();
-  snapshot.documents.forEach((d) {
-    print(d.data);
-  });
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +18,7 @@ class MyApp extends StatelessWidget {
         primaryIconTheme: IconThemeData(color: Colors.blue),
         iconTheme: IconThemeData(color: Colors.blue, size: 15),
       ),
-      home: FeedScreen(),
+      home: LoginScreen(),
     );
   }
 }

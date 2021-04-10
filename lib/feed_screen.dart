@@ -1,10 +1,15 @@
 import 'dart:io';
+import 'package:blogging_flutter/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'text_composer_screen.dart';
 
 class FeedScreen extends StatefulWidget {
+  FeedScreen({Map<String, dynamic> this.userData});
+
+  final Map<String, dynamic> userData;
+
   @override
   _FeedScreenState createState() => _FeedScreenState();
 }
@@ -47,13 +52,10 @@ class _FeedScreenState extends State<FeedScreen> {
                       default:
                         List<DocumentSnapshot> documents =
                             snapshot.data.documents.reversed.toList();
-
                         return ListView.builder(
                           itemCount: documents.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(documents[index].data['text']),
-                            );
+                            return Post(documents[index].data, widget.userData);
                           },
                         );
                     }
