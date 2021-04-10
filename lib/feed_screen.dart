@@ -15,6 +15,8 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
+  String get photoUrl => null;
+
   void _postInFeed({String text, File imgFile}) async {
     Map<String, dynamic> data = {};
 
@@ -37,7 +39,9 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Pagina inicial')),
+      appBar: AppBar(
+        title: Text('Pagina inicial'),
+      ),
       body: Column(
         children: [
           Expanded(

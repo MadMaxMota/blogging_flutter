@@ -72,61 +72,57 @@ class _TextComposerScreenState extends State<TextComposerScreen> {
         body: Column(
           children: [
             Divider(height: 3, color: Colors.grey),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 50),
-                  child: CircleAvatar(),
-                ),
-                Expanded(
-                    child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                        controller: _controller,
-                        decoration: InputDecoration(
-                            hintText: 'O que está acontecendo?'),
-                        onChanged: (text) {
-                          setState(() {
-                            _isComposing = text.isNotEmpty;
-                          });
-                        },
-                        onSubmitted: (text) {
-                          widget.postInFeed(text: text);
-                          reset();
-                        },
-                      ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Expanded(
+                  child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: TextField(
+                      controller: _controller,
+                      maxLength: 280,
+                      decoration:
+                          InputDecoration(hintText: 'O que está acontecendo?'),
+                      onChanged: (text) {
+                        setState(() {
+                          _isComposing = text.isNotEmpty;
+                        });
+                      },
+                      onSubmitted: (text) {
+                        widget.postInFeed(text: text);
+                        reset();
+                      },
                     ),
-                    Row(
-                      children: [
-                        IconButton(
-                            icon: Icon(Icons.photo_camera),
-                            onPressed: () async {
-                              getImage(true).then((value) => {
-                                    if (imgFile != null)
-                                      {
-                                        widget.postInFeed(imgFile: imgFile),
-                                        Navigator.pop(context)
-                                      }
-                                  });
-                            }),
-                        IconButton(
-                            icon: Icon(Icons.photo),
-                            onPressed: () async {
-                              getImage(false).then((value) => {
-                                    if (imgFile != null)
-                                      {
-                                        widget.postInFeed(imgFile: imgFile),
-                                        Navigator.pop(context),
-                                      }
-                                  });
-                            }),
-                      ],
-                    ),
-                  ],
-                ))
-              ],
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                          icon: Icon(Icons.photo_camera),
+                          onPressed: () async {
+                            getImage(true).then((value) => {
+                                  if (imgFile != null)
+                                    {
+                                      widget.postInFeed(imgFile: imgFile),
+                                      Navigator.pop(context)
+                                    }
+                                });
+                          }),
+                      IconButton(
+                          icon: Icon(Icons.photo),
+                          onPressed: () async {
+                            getImage(false).then((value) => {
+                                  if (imgFile != null)
+                                    {
+                                      widget.postInFeed(imgFile: imgFile),
+                                      Navigator.pop(context),
+                                    }
+                                });
+                          }),
+                    ],
+                  ),
+                ],
+              )),
             )
           ],
         ));
